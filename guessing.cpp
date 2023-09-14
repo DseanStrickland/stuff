@@ -1,3 +1,10 @@
+//Author: Arjun Pai
+//Date: 9/12/23
+//Credits: Mr.Gailbrath intorduction videos, 
+//3 rules of c+
+//1. no global variables
+//2.No strings
+//3.include <iostream>
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -6,7 +13,7 @@ using namespace std;
 
 int main()
 {
-  srand(time(NULL));
+  srand(time(NULL)); //random number
   
 
   int number = 0;  // sets number
@@ -36,8 +43,6 @@ int guess = 0;
 
      cout << "do you want to play again? (y/n)";
      cin >> again; // change control
-     srand(time(NULL));
-
      
  }
  cout << "Thanks for playing";
