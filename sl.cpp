@@ -1,90 +1,89 @@
+// Student List Program
+// Created by: Arjun Pai
+// Description: This program allows you to manage a list of students.
+// You can add, print, or delete students.
+// Credits: Ram Pai for explaining stcmp and hlping with debugging and Canvas tutorials
+
 #include <iostream>
-#include <cstring> // For C-strings
+#include <cstring>
 
 using namespace std;
 
-// Define the maximum number of students
-const int MAX_STUDENTS = 100;
+ int MAX_STUDENTS = 100;
 
-// Define the student struct
-struct Student {
+struct Student { //initilize variables
     char firstName[50];
     char lastName[50];
     int studentId;
     float GPA;
+    bool isDeleted;
 };
 
-// Function to add a new student to the array by reference
 void addStudent(Student students[], int& numStudents) {
-    if (numStudents < MAX_STUDENTS) {
+  if (numStudents < MAX_STUDENTS) {//information adding to student
         cout << "Enter first name: ";
-        cin >> students[numStudents].firstName;
+        cin >> students[numStudents].firstName; //user input of name
         cout << "Enter last name: ";
-        cin >> students[numStudents].lastName;
+        cin >> students[numStudents].lastName; //user input of last name 
         cout << "Enter student ID: ";
-        cin >> students[numStudents].studentId;
+        cin >> students[numStudents].studentId;//user input of id
         cout << "Enter GPA: ";
-        cin >> students[numStudents].GPA;
-        numStudents++; // Increment the number of students
+        cin >> students[numStudents].GPA;// user input of GPA
+        students[numStudents].isDeleted = false;
+        numStudents++;
     } else {
         cout << "Maximum number of students reached." << endl;
     }
 }
 
-// Function to print all students in the array by value
-void printStudents(const Student students[], int numStudents) {
+void printStudents(Student students[], int numStudents) {//print data function
     cout << "List of students:" << endl;
     for (int i = 0; i < numStudents; ++i) {
-        cout << "Student ID: " << students[i].studentId << endl;
-        cout << "First Name: " << students[i].firstName << endl;
-        cout << "Last Name: " << students[i].lastName << endl;
-        cout << "GPA: " << students[i].GPA << endl;
-        cout << "-------------------" << endl;
+      if (!students[i].isDeleted) {//data printing
+            cout << "Student ID: " << students[i].studentId << endl;
+            cout << "First Name: " << students[i].firstName << endl;
+            cout << "Last Name: " << students[i].lastName << endl;
+            cout << "GPA: " << students[i].GPA << endl;
+            cout << "-------------------" << endl;//seperator 
+        }
     }
-}
 
-// Function to delete a student by student ID by reference
-void deleteStudent(Student students[], int& numStudents, int studentIdToDelete) {
-    for (int i = 0; i < numStudents; ++i) {
+    void deleteStudent(Student students[], int& numStudents, int studentIdToDelete) {//student deletion function
+      for (int i = 0; i < numStudents; ++i) {//run through students
         if (students[i].studentId == studentIdToDelete) {
-            // Shift elements to fill the gap caused by deletion
-            for (int j = i; j < numStudents - 1; ++j) {
-                students[j] = students[j + 1];
-            }
-            numStudents--; // Decrement the number of students
-            cout << "Student with ID " << studentIdToDelete << " deleted." << endl;
+	  students[i].isDeleted = true;//delete
+	  cout << "Student with ID " << studentIdToDelete << " deleted." << endl;//tell user it deleted
             return;
         }
     }
     cout << "Student with ID " << studentIdToDelete << " not found." << endl;
 }
 
-int main() {
-    Student studentList[MAX_STUDENTS]; // Array to store student records
-    int numStudents = 0; // Number of students currently in the array
+    int main() {//main
+    Student studentList[MAX_STUDENTS];
+    int numStudents = 0;
     char command[10];
 
-    cout << "Welcome to the Student Database!" << endl;
+    cout << "Welcome to the Student List Program!" << endl;
 
     while (true) {
         cout << "Enter a command (ADD, PRINT, DELETE, QUIT): ";
         cin >> command;
-
+	//run thrugh all commands and do the one the user wanted and inputted
         if (strcmp(command, "ADD") == 0) {
             addStudent(studentList, numStudents);
         } else if (strcmp(command, "PRINT") == 0) {
-           printStudents(studentList, numStudents);
+            printStudents(studentList, numStudents);
         } else if (strcmp(command, "DELETE") == 0) {
-        int studentIdToDelete;
+           int studentIdToDelete;
             cout << "Enter student ID to delete: ";
             cin >> studentIdToDelete;
             deleteStudent(studentList, numStudents, studentIdToDelete);
-        } else if (strcmp(command, "QUIT") == 0) {
-	  break; // Exit the program
-        } else {
+        } else if (strcmp(command, "QUIT") == 0) {//break out of program
+            break;
+       } else {
             cout << "Invalid command. Please try again." << endl;
-        }
-    }
+        }  }
 
-    return 0;
+    return;
 }
