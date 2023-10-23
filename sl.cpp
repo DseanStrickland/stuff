@@ -2,7 +2,7 @@
 // Created by: Arjun Pai
 // Description: This program allows you to manage a list of students.
 // You can add, print, or delete students.
-// Credits: Ram Pai for explaining stcmp and hlping with debugging and Canvas tutorials
+// Credits: Ram Pai (DAD) for explaining and helping with debugging and also credits to Canvas tutorials
 
 #include <iostream>
 #include <cstring>
