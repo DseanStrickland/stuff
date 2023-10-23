@@ -47,8 +47,8 @@ void printStudents(Student students[], int numStudents) {//print data function
             cout << "-------------------" << endl;//seperator 
         }
     }
-
-    void deleteStudent(Student students[], int& numStudents, int studentIdToDelete) {//student deletion function
+}
+    void deleteStudent(Student students[], int numStudents, int studentIdToDelete) {//student deletion function
       for (int i = 0; i < numStudents; ++i) {//run through students
         if (students[i].studentId == studentIdToDelete) {
 	  students[i].isDeleted = true;//delete
@@ -85,5 +85,5 @@ void printStudents(Student students[], int numStudents) {//print data function
             cout << "Invalid command. Please try again." << endl;
         }  }
 
-    return;
+    return 0;
 }
